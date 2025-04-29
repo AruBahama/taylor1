@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tailored Lease – Opening Theme</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.47/Tone.js"></script>
+  <style>
+    body{font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:1rem}
+    button{padding:.6rem 1.2rem;font-size:1rem;border-radius:8px;border:none;background:#0061ff;color:#fff;cursor:pointer}
+    button:active{transform:scale(.97)}
+  </style>
+</head>
+<body>
+
+  <h1>Tailored Lease &ndash; Opening Theme</h1>
+
+  <!-- Download link -->
+  <p><a href="Tailored_Lease_Theme.mid" download>⬇️ Download the raw MIDI</a></p>
+
+  <!-- Playback controls (Tone.js + pre-rendered MP3) -->
+  <button id="play">Play</button>
+
+  <script>
+    // swap to .ogg if you prefer
+    const player = new Tone.Player("Tailored_Lease_Theme.mp3").toDestination();
+    let playing = false;
+
+    document.getElementById("play").addEventListener("click", async () => {
+      await Tone.start();                      // resume AudioContext
+      if (!playing) {
+        player.start();
+        playing = true;
+        document.getElementById("play").textContent = "Pause";
+      } else {
+        player.stop();
+        playing = false;
+        document.getElementById("play").textContent = "Play";
+      }
+    });
+  </script>
+
+</body>
+</html>
