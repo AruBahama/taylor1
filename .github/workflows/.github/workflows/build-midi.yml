@@ -1,0 +1,26 @@
+name: Build MIDI
+
+on: [push]
+
+jobs:
+  midi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install music21
+
+      - name: Run script
+        run: python tailored_lease_theme.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tailored-lease-midi
+          path: Tailored_Lease_Theme.mid
